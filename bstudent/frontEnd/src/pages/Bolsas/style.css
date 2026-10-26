@@ -1,0 +1,503 @@
+/* #region filtro pesquisa*/ 
+
+
+.bs-search {
+    --accent: #a66a3f;
+    --accent-dark: #87522e;
+    --text: #202124;
+    --muted: #747985;
+    --border: #e3e5e9;
+
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 22px 16px;
+    box-sizing: border-box;
+    color: var(--text);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 10px 32px rgb(0 0 0 / 5%);
+    font-family: Inter, Arial, sans-serif;
+}
+
+.bs-search *,
+.bs-search *::before,
+.bs-search *::after {
+    box-sizing: border-box;
+}
+
+.bs-search__header {
+    margin-bottom: 22px;
+}
+
+.bs-search__eyebrow {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.bs-search__header h2 {
+    margin: 0;
+    font-size: clamp(23px, 5vw, 31px);
+    font-weight: 750;
+    letter-spacing: -1px;
+}
+
+.bs-search__header p {
+    margin: 9px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.bs-search__label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.bs-search__input-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 54px;
+    border: 1px solid #d6d9df;
+    border-radius: 12px;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bs-search__input-box:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgb(166 106 63 / 12%);
+}
+
+.bs-search__icon {
+    position: absolute;
+    left: 13px;
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: #858b95;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    pointer-events: none;
+}
+
+.bs-search__input-box input {
+    width: 100%;
+    min-width: 0;
+    height: 52px;
+    padding: 0 8px 0 41px;
+    border: 0;
+    outline: 0;
+    border-radius: 12px;
+    color: var(--text);
+    background: transparent;
+    font: inherit;
+    font-size: 13px;
+}
+
+.bs-search__input-box input::placeholder {
+    color: #9a9faa;
+}
+
+.bs-search__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    flex-shrink: 0;
+    min-height: 40px;
+    margin-right: 6px;
+    padding: 0 11px;
+    border: 0;
+    border-radius: 9px;
+    color: #fff;
+    background: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.bs-search__button:hover,
+.bs-search__apply:hover {
+    background: var(--accent-dark);
+}
+
+.bs-search__button svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.bs-search__filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 22px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid #eceef1;
+}
+
+.bs-search__filter-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.bs-search__filter-title svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+}
+
+.bs-search__toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 0 8px 8px;
+    border: 0;
+    color: var(--accent-dark);
+    background: transparent;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.bs-search__toggle span {
+    font-size: 19px;
+    transition: transform 0.2s;
+}
+
+.bs-search__toggle span.aberto {
+    transform: rotate(180deg);
+}
+
+.bs-search__filters {
+    display: grid;
+    gap: 17px;
+    padding-top: 18px;
+    animation: bs-appear 0.2s ease-out;
+}
+
+.bs-search__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.bs-search__field label {
+    color: #454951;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.bs-search__field select {
+    width: 100%;
+    min-height: 47px;
+    padding: 0 12px;
+    border: 1px solid #dfe2e7;
+    border-radius: 10px;
+    outline: none;
+    color: #34373d;
+    background: #fff;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.bs-search__field select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgb(166 106 63 / 10%);
+}
+
+.bs-search__actions {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 9px;
+    padding-top: 2px;
+}
+
+.bs-search__clear,
+.bs-search__apply {
+    min-height: 45px;
+    padding: 0 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.bs-search__clear {
+    border: 1px solid var(--border);
+    color: #555b65;
+    background: #fff;
+}
+
+.bs-search__clear:hover {
+    background: #f7f7f8;
+}
+
+.bs-search__apply {
+    border: 1px solid var(--accent);
+    color: #fff;
+    background: var(--accent);
+}
+
+.bs-search button:focus-visible {
+    outline: 3px solid rgb(166 106 63 / 35%);
+    outline-offset: 3px;
+}
+
+@keyframes bs-appear {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tablets */
+@media (min-width: 600px) {
+    .bs-search {
+        padding: 28px;
+    }
+
+    .bs-search__filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bs-search__actions {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .bs-search__clear,
+    .bs-search__apply {
+        min-width: 130px;
+    }
+}
+
+/* Computadores */
+@media (min-width: 820px) {
+    .bs-search {
+        padding: 32px;
+    }
+
+    .bs-search__filters {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .bs-search__actions {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .bs-search *,
+    .bs-search *::before,
+    .bs-search *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+/* #endregion */
+
+/* Contentor de todos os cards */
+.bolsaContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+/* Card individual */
+.cardBolsa {
+    display: flex;
+    flex: 1 1 260px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    max-width: 170px;
+    min-width: 0;
+    padding: 20px 16px;
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+    border: 1px solid #eee8e2;
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+/* Efeito ao passar o rato */
+.cardBolsa:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(121, 84, 59, 0.14);
+    border-color: #d8c4b5;
+}
+
+/* Imagem ou logótipo da bolsa */
+.cardBolsa img {
+    display: block;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    object-fit: cover;
+
+    border: 2px solid #79543b;
+    border-radius: 50%;
+    background-color: #f6f3ef;
+}
+
+/* Área dos dados */
+.cardBolsa .dadosP {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    color: #51473f;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Cada informação */
+.cardBolsa .dadosP div {
+    padding: 6px 9px;
+    border-radius: 6px;
+    background-color: #f6f3ef;
+    overflow-wrap: anywhere;
+}
+
+/* Títulos e textos */
+.cardBolsa h3 {
+    width: 100%;
+    margin: 0;
+    color: #29231f;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.cardBolsa p {
+    margin: 0;
+    color: #746b65;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Botão */
+.cardBolsa button {
+    width: 100%;
+    min-height: 42px;
+    margin-top: auto;
+    padding: 10px 14px;
+
+    border: 1px solid #79543b;
+    border-radius: 8px;
+    outline: none;
+
+    color: #ffffff;
+    background-color: #79543b;
+
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.cardBolsa button:hover {
+    background-color: #5f402d;
+    border-color: #5f402d;
+}
+
+.cardBolsa button:active {
+    transform: scale(0.98);
+}
+
+.cardBolsa button:focus-visible {
+    outline: 3px solid rgba(121, 84, 59, 0.3);
+    outline-offset: 3px;
+}
+
+/* Tablets */
+@media (min-width: 600px) {
+    .bolsaContainer {
+        gap: 24px;
+        padding: 24px;
+    }
+
+    .cardBolsa {
+        flex-basis: 260px;
+    }
+}
+
+/* Computadores */
+@media (min-width: 1024px) {
+    .bolsaContainer {
+        gap: 28px;
+    }
+}
+
+/* Reduzir animações para quem assim o prefere */
+@media (prefers-reduced-motion: reduce) {
+
+    .cardBolsa,
+    .cardBolsa button {
+        transition: none;
+    }
+
+    .cardBolsa:hover,
+    .cardBolsa button:active {
+        transform: none;
+    }
+}
